@@ -7,7 +7,7 @@ export class MusicPlayer extends React.Component {
 			datos: [],
 			play: false,
 			url: "",
-			posicion: null
+			position: null
 		};
 		(this.player = null), (this.Play = this.Play.bind(this));
 	}
@@ -20,30 +20,30 @@ export class MusicPlayer extends React.Component {
 	}
 	Play(i) {
 		let url = this.state.datos[i].url;
-		let posicion = i;
+		let position = i;
 		this.player.src = "https://assets.breatheco.de/apis/sound/" + url;
 		this.player.play();
-		this.setState({ url: url, play: true, posicion: posicion });
+		this.setState({ url: url, play: true, position: position });
 	}
 
 	Backwards() {
-		if (this.state.posicion > 0) {
-			let posicion = this.state.posicion - 1;
-			let url = this.state.datos[posicion].url;
+		if (this.state.position > 0) {
+			let position = this.state.position - 1;
+			let url = this.state.datos[position].url;
 			this.player.src = "https://assets.breatheco.de/apis/sound/" + url;
 			this.player.play();
-			this.setState({ url: url, posicion: posicion, play: true });
+			this.setState({ url: url, position: position, play: true });
 		} else {
-			let posicion = this.state.datos.length - 1;
-			let url = this.state.datos[posicion].url;
+			let position = this.state.datos.length - 1;
+			let url = this.state.datos[position].url;
 			this.player.src = "https://assets.breatheco.de/apis/sound/" + url;
 			this.player.play();
-			this.setState({ url: url, posicion: posicion, play: true });
+			this.setState({ url: url, position: position, play: true });
 		}
 	}
 
 	PausePlay() {
-		if (this.state.posicion == null) {
+		if (this.state.position == null) {
 			this.Play(0);
 		} else {
 			let play = !this.state.play;
@@ -52,21 +52,21 @@ export class MusicPlayer extends React.Component {
 		}
 	}
 	Forward() {
-		if (this.state.posicion < this.state.datos.length - 1) {
-			let posicion = this.state.posicion + 1;
-			let url = this.state.datos[posicion].url;
+		if (this.state.position < this.state.datos.length - 1) {
+			let position = this.state.position + 1;
+			let url = this.state.datos[position].url;
 			this.player.src = "https://assets.breatheco.de/apis/sound/" + url;
 			this.player.play();
-			this.setState({ url: url, posicion: posicion, play: true });
+			this.setState({ url: url, position: position, play: true });
 		} else {
-			let posicion = 0;
-			let url = this.state.datos[posicion].url;
+			let position = 0;
+			let url = this.state.datos[position].url;
 			this.player.src = "https://assets.breatheco.de/apis/sound/" + url;
 			this.player.play();
-			this.setState({ url: url, posicion: posicion, play: true });
+			this.setState({ url: url, position: position, play: true });
 		}
 	}
-	CambiarSimbolo() {
+	ChangeSymbol() {
 		let simbolo = this.state.play
 			? "fas fa-pause-circle fa-2x"
 			: "fas fa-play-circle fa-2x";
@@ -97,7 +97,7 @@ export class MusicPlayer extends React.Component {
 					</div>
 					<div>
 						<i
-							className={this.CambiarSimbolo()}
+							className={this.ChangeSymbol()}
 							onClick={() => this.PausePlay()}></i>
 					</div>
 					<div>
